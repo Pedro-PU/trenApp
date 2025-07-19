@@ -1,0 +1,9 @@
+{
+  "projects": {
+    "default": "tren-44bd7",
+    "tren": "tren-44bd7"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
+}

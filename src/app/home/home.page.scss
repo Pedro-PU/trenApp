@@ -1,27 +1,130 @@
-#container {
-  text-align: center;
+:root {
+  --velocidad-container-size: 16rem;
+}
+.velocidad-container {
+  position: relative;
+  width: var(--velocidad-container-size);
+  height: var(--velocidad-container-size);
+  margin: 0 auto;
+  max-width: 90vw;
+  max-height: 90vw;
+}
 
+.velocidad-container svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.progress-ring__circle {
+  transition: stroke-dashoffset 0.35s ease;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+
+.velocidad-container svg {
+  width: 100%;
+  height: 100%;
+}
+
+.progress-ring__circle {
+  transition: stroke-dashoffset 0.35s ease;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+
+.velocidad-text {
   position: absolute;
-  left: 0;
-  right: 0;
   top: 50%;
-  transform: translateY(-50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0.3em;
+  font-size: clamp(1.2rem, 5vw, 2.4rem);
+  color: #3880ff;
+  user-select: none;
+  pointer-events: none;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+
+.velocidad-marcador {
+  display: flex;
+  align-items: baseline;
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
 
-  color: #8c8c8c;
+.numero {
+  font-weight: bold;
+  line-height: 1;
+}
 
+.unidad {
+  font-size: 0.5em;
+  font-weight: 600;
+}
+
+
+.direccion-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.direccion-icon {
+  font-size: 5rem;
+}
+
+.adelante {
+  color: #3880ff; /* azul para adelante */
+  font-weight: bold;
+}
+
+.atras {
+  color: #eb445a; /* rojo para atrás */
+  font-weight: bold;
+}
+
+.aceleracion-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.aceleracion-container ion-icon {
+  transition: all 0.3s ease;
+}
+
+h1 {
+  font-size: 3rem;
   margin: 0;
+  text-align: center;
 }
 
-#container a {
-  text-decoration: none;
+ion-card-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 1.3rem;
+}
+
+ion-card-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+
+@media (max-width: 480px) {
+  .velocidad-container {
+    width: 50vw;
+    height: 50vw;
+  }
+  .velocidad-text {
+    gap: 0;
+  }
 }

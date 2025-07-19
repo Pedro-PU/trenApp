@@ -1,20 +1,65 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title>Estado del Tren</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <!-- Velocidad media con círculo de progreso -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        <ion-icon name="speedometer-outline" slot="start"></ion-icon>
+        Velocidad Media
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="velocidad-container">
+        <svg viewBox="0 0 160 160" preserveAspectRatio="xMidYMid meet">
+          <circle #progressCircle class="progress-ring__circle" stroke="#3880ff" stroke-width="5.5%" fill="transparent" r="35%" cx="50%" cy="50%"/>
+        </svg>
+        <div class="velocidad-text">
+          <span class="numero">{{ velocidadMedia }}</span>
+          <span class="unidad">mm/s</span>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Dirección con icono flecha -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        <ion-icon name="compass-outline" slot="start"></ion-icon>
+        Dirección
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="direccion-container">
+      <ion-icon 
+        [name]="direccion === 'Adelante' ? 'arrow-up-circle-outline' : 'arrow-down-circle-outline'" 
+        class="direccion-icon"
+      ></ion-icon>
+      <h1 [ngClass]="{'adelante': direccion === 'Adelante', 'atras': direccion === 'Atrás'}">{{ direccion }}</h1>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Aceleración con icono pulse que cambia tamaño y color -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        <ion-icon name="pulse-outline" slot="start"></ion-icon>
+        Aceleración (PWM)
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="aceleracion-container">
+      <ion-icon 
+        name="pulse" 
+        [style.color]="getColorPWM()" 
+        [style.fontSize.px]="getSizePWM()"
+      ></ion-icon>
+      <h1>{{ velocidadPWM }}</h1>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>
