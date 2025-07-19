@@ -1,0 +1,7 @@
+{
+  "name": "TrenApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
