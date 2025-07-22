@@ -1,6 +1,48 @@
 :root {
   --velocidad-container-size: 16rem;
+  --color-principal: rgb(241, 237, 210); // color retro claro
+  --color-fondo: rgb(49, 49, 51); // fondo oscuro
+  --color-card: #1e1e1e; // casi negro
 }
+
+:host {
+  ion-content {
+  }
+  --background: var(--color-fondo);
+}
+
+ion-card {
+  background-color: var(--color-card);
+  color: var(--color-principal);
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+ion-card-title,
+.numero,
+.unidad,
+h1,
+ion-note {
+  --color: rgb(241, 237, 210);
+  
+}
+
+ion-header,
+ion-toolbar {
+  --background: rgb(49, 49, 51); /* tu color principal */
+  --color: rgb(241, 237, 210);   /* color del texto/iconos */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+ion-menu,
+ion-menu ion-content {
+  --background: rgb(49, 49, 51);
+  --color: rgb(241, 237, 210);
+}
+
+ion-icon {
+  color: var(--color-principal);
+}
+
 .velocidad-container {
   position: relative;
   width: var(--velocidad-container-size);
@@ -14,16 +56,6 @@
   width: 100%;
   height: 100%;
   display: block;
-}
-.progress-ring__circle {
-  transition: stroke-dashoffset 0.35s ease;
-  transform: rotate(-90deg);
-  transform-origin: 50% 50%;
-}
-
-.velocidad-container svg {
-  width: 100%;
-  height: 100%;
 }
 
 .progress-ring__circle {
@@ -42,17 +74,11 @@
   align-items: baseline;
   gap: 0.3em;
   font-size: clamp(1.2rem, 5vw, 2.4rem);
-  color: #3880ff;
   user-select: none;
   pointer-events: none;
+  color:rgb(241, 237, 210);
+  font-family: Arial, Helvetica, sans-serif;
 }
-
-
-.velocidad-marcador {
-  display: flex;
-  align-items: baseline;
-}
-
 
 .numero {
   font-weight: bold;
@@ -63,7 +89,6 @@
   font-size: 0.5em;
   font-weight: 600;
 }
-
 
 .direccion-container {
   display: flex;
@@ -77,13 +102,13 @@
 }
 
 .adelante {
-  color: #3880ff; /* azul para adelante */
-  font-weight: bold;
+  color: #FBBF47; /* verde para adelante */
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .atras {
-  color: #eb445a; /* rojo para atrás */
-  font-weight: bold;
+  color: #FBBF47; /* verde para adelante */
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .aceleracion-container {
@@ -101,6 +126,7 @@ h1 {
   font-size: 3rem;
   margin: 0;
   text-align: center;
+  color:rgb(241, 237, 210);
 }
 
 ion-card-title {
@@ -118,13 +144,83 @@ ion-card-content {
   padding: 0;
 }
 
-
 @media (max-width: 480px) {
   .velocidad-container {
     width: 50vw;
     height: 50vw;
   }
+
   .velocidad-text {
     gap: 0;
   }
+}
+@keyframes latido {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.pulse-animado {
+  animation: latido 1.2s infinite ease-in-out;
+  will-change: transform;
+}
+
+.barra-progreso-toolbar {
+  --background: transparent;
+  height: 4px;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.barra-progreso {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 30%;
+  background-color: #FBBF47; // amarillo vibrante
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+/* Animación hacia adelante */
+@keyframes barra-adelante {
+  0% {
+    left: -30%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Animación hacia atrás */
+@keyframes barra-atras {
+  0% {
+    left: 100%;
+  }
+  100% {
+    left: -30%;
+  }
+}
+
+.adelante-barra {
+  animation-name: barra-adelante;
+}
+
+.atras-barra {
+  animation-name: barra-atras;
 }

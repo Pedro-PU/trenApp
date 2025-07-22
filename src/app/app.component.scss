@@ -1,0 +1,31 @@
+ion-menu {
+  --background: rgb(49, 49, 51); /* fondo del menú */
+  --color: rgb(241, 237, 210); /* texto del menú */
+}
+
+ion-menu ion-toolbar {
+  --background: rgb(49, 49, 51);
+  --color: rgb(241, 237, 210);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Botones personalizados */
+ion-menu ion-button {
+  --background: rgb(251, 191, 71);
+  --color: #000; /* texto negro para mejor contraste */
+  border-radius: 10px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+ion-menu ion-button:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 10px rgba(251, 191, 71, 0.4);
+}
+ion-card {
+  background-color: var(--color-card);
+  color: var(--color-principal);
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}

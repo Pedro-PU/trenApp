@@ -1,23 +1,36 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Estado del Tren</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button>
+        
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+  <ion-img src="assets/icon/Tren.svg" style="height: 32px; width: auto;"></ion-img>
+  </ion-title>
+  
+
+
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
 
+<ion-content class="ion-padding">
+  <ion-toolbar class="barra-progreso-toolbar">
+    <div class="barra-progreso" [ngClass]="direccion === 'Adelante' ? 'adelante-barra' : 'atras-barra'"></div>
+  </ion-toolbar>
   <!-- Velocidad media con círculo de progreso -->
   <ion-card>
     <ion-card-header>
       <ion-card-title>
         <ion-icon name="speedometer-outline" slot="start"></ion-icon>
-        Velocidad Media
+        <h2>Velocidad media</h2>
       </ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <div class="velocidad-container">
         <svg viewBox="0 0 160 160" preserveAspectRatio="xMidYMid meet">
-          <circle #progressCircle class="progress-ring__circle" stroke="#3880ff" stroke-width="5.5%" fill="transparent" r="35%" cx="50%" cy="50%"/>
+          <circle #progressCircle class="progress-ring__circle" stroke="#FBBF47" stroke-width="5.5%" fill="transparent" r="35%" cx="50%" cy="50%"/>
         </svg>
         <div class="velocidad-text">
           <span class="numero">{{ velocidadMedia }}</span>
@@ -32,14 +45,16 @@
     <ion-card-header>
       <ion-card-title>
         <ion-icon name="compass-outline" slot="start"></ion-icon>
-        Dirección
+        <h2>Dirección</h2>
       </ion-card-title>
     </ion-card-header>
     <ion-card-content class="direccion-container">
       <ion-icon 
         [name]="direccion === 'Adelante' ? 'arrow-up-circle-outline' : 'arrow-down-circle-outline'" 
         class="direccion-icon"
-      ></ion-icon>
+        [style.color]="direccion === 'Adelante' ? '#4bb543' : '#eb445a'"
+></ion-icon>
+
       <h1 [ngClass]="{'adelante': direccion === 'Adelante', 'atras': direccion === 'Atrás'}">{{ direccion }}</h1>
     </ion-card-content>
   </ion-card>
@@ -49,7 +64,7 @@
     <ion-card-header>
       <ion-card-title>
         <ion-icon name="pulse-outline" slot="start"></ion-icon>
-        Aceleración (PWM)
+        <h2>Aceleración(PWM)</h2>
       </ion-card-title>
     </ion-card-header>
     <ion-card-content class="aceleracion-container">
@@ -57,7 +72,9 @@
         name="pulse" 
         [style.color]="getColorPWM()" 
         [style.fontSize.px]="getSizePWM()"
+        class="pulse-animado"
       ></ion-icon>
+
       <h1>{{ velocidadPWM }}</h1>
     </ion-card-content>
   </ion-card>
