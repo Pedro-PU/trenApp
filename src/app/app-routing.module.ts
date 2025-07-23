@@ -10,7 +10,11 @@ const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
+  },  {
+    path: 'circuito',
+    loadChildren: () => import('./circuito/circuito.module').then( m => m.CircuitoPageModule)
   },
+
 
 
 ];
