@@ -1,48 +1,6 @@
-:root {
-  --velocidad-container-size: 16rem;
-  --color-principal: rgb(241, 237, 210); // color retro claro
-  --color-fondo: rgb(49, 49, 51); // fondo oscuro
-  --color-card: #1e1e1e; // casi negro
+ion-content{
+  --background: #1e1e1e;
 }
-
-:host {
-  ion-content {
-  }
-  --background: var(--color-fondo);
-}
-
-ion-card {
-  background-color: var(--color-card);
-  color: var(--color-principal);
-  border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
-}
-
-ion-card-title,
-.numero,
-.unidad,
-h1,
-ion-note {
-  --color: rgb(241, 237, 210);
-  
-}
-
-ion-header,
-ion-toolbar {
-  --background: rgb(49, 49, 51); /* tu color principal */
-  --color: rgb(241, 237, 210);   /* color del texto/iconos */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-ion-menu,
-ion-menu ion-content {
-  --background: rgb(49, 49, 51);
-  --color: rgb(241, 237, 210);
-}
-
-ion-icon {
-  color: var(--color-principal);
-}
-
 .velocidad-container {
   position: relative;
   width: var(--velocidad-container-size);
@@ -95,6 +53,7 @@ ion-icon {
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  
 }
 
 .direccion-icon {
@@ -120,28 +79,6 @@ ion-icon {
 
 .aceleracion-container ion-icon {
   transition: all 0.3s ease;
-}
-
-h1 {
-  font-size: 3rem;
-  margin: 0;
-  text-align: center;
-  color:rgb(241, 237, 210);
-}
-
-ion-card-title {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: 600;
-  font-size: 1.3rem;
-}
-
-ion-card-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
 }
 
 @media (max-width: 480px) {
@@ -224,3 +161,261 @@ ion-card-content {
 .atras-barra {
   animation-name: barra-atras;
 }
+/* ----- Velocímetro analógico ----- */
+
+.gauge-wrapper {
+  position: relative;
+  width: min(300px, 80vw);
+  margin: 0 auto;
+}
+
+.gauge {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Pista base */
+.gauge-track {
+  fill: none;
+  stroke: rgba(243, 216, 140, 0.15);
+  stroke-width: 12;
+  stroke-linecap: round;
+}
+
+/* Valor (área ámbar) */
+.gauge-value {
+  fill: none;
+  stroke: rgb(251,191,71);
+  stroke-width: 12;
+  stroke-linecap: round;
+  transform-origin: center;
+  transition: stroke-dashoffset 0.35s ease;
+}
+
+/* Aguja */
+.gauge-needle line {
+  stroke: rgb(251,191,71);
+  stroke-width: 4;
+  stroke-linecap: round;
+  transform-origin: 100px 100px;
+}
+.gauge-needle {
+  transition: transform 0.35s ease;
+}
+.gauge-needle-cap {
+  fill: rgb(251,191,71);
+  stroke: #000;
+  stroke-width: 1;
+}
+
+/* Ticks */
+.gauge-ticks line {
+  stroke: rgb(251,191,71);
+  stroke-width: 2;
+}
+
+/* Lectura numérica sobrepuesta */
+.gauge-readout {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 30%);
+  display: flex;
+  align-items: baseline;
+  gap: 0.25em;
+  color: rgb(241,237,210);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.gauge-readout .numero {
+  font-weight: bold;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+}
+.gauge-readout .unidad {
+  font-size: 0.5em;
+  font-weight: 600;
+}
+.card-velocidad ion-card-content {
+  min-height: 150px; /* ajusta */
+  padding: 0; /* conserva tu estilo */
+}
+
+.pwm-card-content {
+  width: 100%;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.pwm-meter {
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
+}
+
+.pwm-meter-track {
+  position: relative;
+  width: 100%;
+  height: 16px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.pwm-meter-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  border-radius: 8px;
+  transition: width 0.25s ease, background 0.25s ease;
+  /* fallback color in case binding fails */
+  background: rgb(251,191,71);
+}
+
+.pwm-meter-value {
+  margin-top: 4px;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: rgb(241,237,210);
+}
+/* =========================================================
+   Ajuste tamaño velocímetro Home (gauge-sm)
+   ========================================================= */
+.gauge-sm {
+  max-width: 140px; /* ↓ achica (prueba 140; sube/baja) */
+}
+
+/* En pantallas grandes permite que crezca un poco */
+@media (min-width: 600px) {
+  .gauge-sm {
+    max-width: 180px;
+  }
+}
+
+/* Aguja y arco más delgados para que no se vean aplastados */
+.gauge-sm .gauge-track,
+.gauge-sm .gauge-value {
+  stroke-width: 8;
+}
+.gauge-sm .gauge-needle line {
+  stroke-width: 3;
+}
+
+/* Número dentro del arco (ya no abajo donde se cortaba) */
+.gauge-sm .gauge-readout {
+  bottom: auto;
+  top: 58%;                /* súbelo/bájalo según se vea */
+  transform: translate(-50%, -50%);
+}
+
+/* Texto más pequeño para que quepa */
+.gauge-sm .gauge-readout .numero {
+  font-size: clamp(1.1rem, 4vw, 1.8rem);
+}
+.gauge-sm .gauge-readout .unidad {
+  font-size: 0.45em;
+}
+
+/* =========================================================
+   HOME MOTION ENHANCEMENTS
+   ========================================================= */
+
+/* ------------- Home background subtle (optional) ------------- */
+.home-content {
+  position: relative;
+}
+.home-content::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      rgba(255,255,255,0.03) 0 2px,
+      rgba(255,255,255,0.00) 2px 6px
+    );
+  opacity: 0.15;
+  pointer-events: none;
+  animation: bg-drift 12s linear infinite;
+}
+@keyframes bg-drift {
+  from { background-position: 0 0; }
+  to   { background-position: 200px 200px; }
+}
+
+/* Reduce background motion on small devices if quieres */
+@media (max-width:480px) {
+  .home-content::before {
+    opacity: 0.08;
+    animation-duration: 20s;
+  }
+}
+
+/* ------------- Gauge needle ease bounce ------------- */
+.gauge-needle {
+  transition: transform 0.45s cubic-bezier(.34,1.56,.64,1); /* overshoot */
+}
+
+/* ------------- Gauge readout flash on update ------------- */
+.gauge-readout.vel-flash {
+  animation: vel-flash 0.3s ease;
+}
+@keyframes vel-flash {
+  0%   { transform: translate(-50%, -50%) scale(1);    }
+  35%  { transform: translate(-50%, -50%) scale(1.15); }
+  100% { transform: translate(-50%, -50%) scale(1);    }
+}
+
+/* ------------- Direction arrow bounce ------------- */
+.dir-forward {
+  animation: dir-fwd 0.4s ease;
+}
+.dir-back {
+  animation: dir-back 0.4s ease;
+}
+@keyframes dir-fwd {
+  0%   { transform: translateY(0) scale(1);   }
+  35%  { transform: translateY(-6px) scale(1.05); }
+  100% { transform: translateY(0) scale(1);   }
+}
+@keyframes dir-back {
+  0%   { transform: translateY(0) scale(1);   }
+  35%  { transform: translateY(6px) scale(1.05); }
+  100% { transform: translateY(0) scale(1);   }
+}
+
+/* ------------- PWM animated stripes ------------- */
+@keyframes pwm-stripes {
+  from { background-position: 0 0; }
+  to   { background-position: 40px 0; }
+}
+
+.pwm-meter-fill {
+  position: relative;
+  overflow: hidden;
+}
+.pwm-meter-fill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(0,0,0,0.20) 0 6px,
+      rgba(0,0,0,0.00) 6px 12px
+    );
+  animation: pwm-stripes 2s linear infinite;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* speed variants based on PWM % */
+.pwm-slow::after { animation-duration: 2s; }
+.pwm-med::after  { animation-duration: 1s; }
+.pwm-fast::after { animation-duration: 0.4s; }
+/* off = no animation */
+.pwm-off::after  { animation: none; opacity: 0; }

@@ -1,0 +1,66 @@
+.circuito-content {
+  --background: var(--color-fondo);
+  color: var(--color-principal);
+  padding: 16px;
+}
+
+.circuito-card {
+  margin: 16px 0;
+}
+
+.img-wrapper {
+  width: 100%;
+  max-height: 60vh;
+  overflow: auto;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  margin-top: 16px;
+}
+
+/* Acordeones */
+.circuito-accordion ion-item {
+  --background: var(--color-card);
+  --color: var(--color-principal);
+}
+.circuito-accordion ion-icon {
+  color: var(--color-accent);
+}
+.accordion-content {
+  padding: 16px;
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.35;
+}
+.accordion-content ul {
+  margin: 8px 0 8px 20px;
+  padding: 0;
+  list-style: disc;
+}
+
+/* Calc grid */
+.calc-grid {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+}
+.calc-row {
+  margin-bottom: 12px;
+}
+.calc-row h3 {
+  margin: 0 0 4px 0;
+  font-size: var(--fs-h3);
+  font-family: var(--font-heading);
+  color: var(--color-accent);
+}
+
+/* Descargas */
+.descarga-wrapper {
+  margin: 32px 16px;
+}
+.descargar-btn {
+  --background: var(--color-accent);
+  --background-activated: rgba(251,191,71,0.85);
+  --color: #000;
+  font-weight: bold;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}

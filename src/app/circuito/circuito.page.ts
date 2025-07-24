@@ -8,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CircuitoPage implements OnInit {
 
-  constructor() { }
+  // controla qué imagen se muestra (Esquemático o PCB)
+  segment: 'schem' | 'pcb' = 'schem';
 
-  ngOnInit() {
+  constructor() {}
+
+  ngOnInit() {}
+
+  segmentChanged(ev: CustomEvent) {
+    // ion-segment emite el nuevo value en ev.detail.value
+    this.segment = (ev.detail as any).value;
   }
-
 }

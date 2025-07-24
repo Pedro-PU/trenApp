@@ -14,6 +14,10 @@ const routes: Routes = [
     path: 'circuito',
     loadChildren: () => import('./circuito/circuito.module').then( m => m.CircuitoPageModule)
   },
+  {
+    path: 'proyecto',
+    loadChildren: () => import('./proyecto/proyecto.module').then( m => m.ProyectoPageModule)
+  },
 
 
 

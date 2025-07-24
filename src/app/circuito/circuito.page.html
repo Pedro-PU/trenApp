@@ -1,23 +1,144 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-menu-button class="menu-tren"></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      <ion-img src="assets/icon/Tren.svg" style="height: 32px; width: auto;"></ion-img>
+      <ion-img src="assets/icon/Tren.svg" style="height:32px;width:auto;" alt="TREN Logo"></ion-img>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-title size="large">Circuito</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="circuito-content">
 
-  <!-- Tu contenido aquí -->
+  <!-- Intro -->
+  <ion-card class="circuito-card">
+    <ion-card-header>
+      <ion-card-title class="accent-text"><h1>Circuito T.R.E.N.</h1></ion-card-title>
+      <ion-card-subtitle><h3>Arquitectura electrónica del prototipo</h3></ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <p class="body-text">
+        El sistema integra sensores Hall, un ESP32 FireBeetle, el driver DRV8833 para el motor y un Step‑Up MT3608 que regula la energía de baterías Li‑ion. Los eventos magnéticos se procesan y se envían en tiempo real a Firebase.
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Diagramas -->
+  <ion-card class="circuito-card">
+    <ion-card-header>
+      <ion-card-title class="accent-text"><h2>Diagramas</h2></ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-segment class="segment-tren" [value]="segment" (ionChange)="segmentChanged($event)">
+        <ion-segment-button value="schem">
+          <ion-label><h3>Esquemático</h3></ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="pcb">
+          <ion-label><h3>PCB</h3></ion-label>
+        </ion-segment-button>
+      </ion-segment>
+
+      <div [hidden]="segment !== 'schem'" class="img-wrapper">
+        <ion-img src="assets/circuito/circuito-schem.jpg" alt="Esquemático TREN"></ion-img>
+      </div>
+      <div [hidden]="segment !== 'pcb'" class="img-wrapper">
+        <ion-img src="assets/circuito/circuito-pcb.jpg" alt="PCB TREN"></ion-img>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Bloques funcionales -->
+  <ion-accordion-group expand="inset" class="circuito-accordion">
+
+    <ion-accordion value="sensores">
+      <ion-item slot="header">
+        <ion-icon name="magnet-outline" slot="start" color="tren"></ion-icon>
+        <ion-label><h2>Sensores Hall</h2></ion-label>
+      </ion-item>
+      <div slot="content" class="accordion-content">
+        <p class="body-text">Tres sensores:</p>
+        <ul>
+          <li><strong>OH44E</strong> (unipolar): presencia magnética.</li>
+          <li><strong>U18</strong> (bipolar): secuencia A→B→C para conteo.</li>
+          <li><strong>49E</strong> (lineal): salida analógica para control/diagnóstico.</li>
+        </ul>
+        <p class="body-text">Cada sensor incluye pull‑up de 10kΩ a 3.3V para señal estable.</p>
+      </div>
+    </ion-accordion>
+
+    <ion-accordion value="mcu">
+      <ion-item slot="header">
+        <ion-icon name="hardware-chip-outline" slot="start" color="tren"></ion-icon>
+        <ion-label><h2>MCU ESP32 FireBeetle</h2></ion-label>
+      </ion-item>
+      <div slot="content" class="accordion-content">
+        <p class="body-text">Header 18×2 expone GPIOs para sensores, control de motor y telemetría.</p>
+        <p class="body-text">Lee eventos, ejecuta el algoritmo anti‑rebote, cuenta vueltas y envía a Firebase.</p>
+      </div>
+    </ion-accordion>
+
+    <ion-accordion value="motor">
+      <ion-item slot="header">
+        <ion-icon name="train-outline" slot="start" color="tren"></ion-icon>
+        <ion-label><h2>Driver Motor DRV8833</h2></ion-label>
+      </ion-item>
+      <div slot="content" class="accordion-content">
+        <p class="body-text">Control bidireccional del motor DC mediante PWM. Entradas del ESP32; puente H dual.</p>
+      </div>
+    </ion-accordion>
+
+    <ion-accordion value="power">
+      <ion-item slot="header">
+        <ion-icon name="battery-charging-outline" slot="start" color="tren"></ion-icon>
+        <ion-label><h2>Alimentación &amp; Regulación</h2></ion-label>
+      </ion-item>
+      <div slot="content" class="accordion-content">
+        <p class="body-text">2×3.7V Li‑ion → diodo IN5819 → Step‑Up MT3608 a 5V.</p>
+        <p class="body-text">Capacitor 220µF + LED estado (R≈330Ω). Sensores a 3.3V del ESP32.</p>
+      </div>
+    </ion-accordion>
+
+    <ion-accordion value="proteccion">
+      <ion-item slot="header">
+        <ion-icon name="shield-checkmark-outline" slot="start" color="tren"></ion-icon>
+        <ion-label><h2>Protección &amp; Indicadores</h2></ion-label>
+      </ion-item>
+      <div slot="content" class="accordion-content">
+        <p class="body-text">Diodo Schottky contra polaridad inversa. LED visual alimentado a 5V regulado.</p>
+      </div>
+    </ion-accordion>
+
+    <ion-accordion value="calculosp">
+      <ion-item slot="header">
+        <ion-icon name="calculator-outline" slot="start" color="tren"></ion-icon>
+        <ion-label><h2>Cálculos Clave</h2></ion-label>
+      </ion-item>
+      <div slot="content" class="accordion-content">
+        <ion-grid class="calc-grid">
+          <ion-row class="calc-row">
+            <ion-col size="12">
+              <h3>Pull‑up Sensores</h3>
+              <p class="body-text">10kΩ a 3.3V → ~0.33mA cuando pin LOW.</p>
+            </ion-col>
+          </ion-row>
+          <ion-row class="calc-row">
+            <ion-col size="12">
+              <h3>LED Indicador</h3>
+              <p class="body-text">Si V<sub>F</sub>=2V @5mA → R≈600Ω; usamos 330Ω (~9mA) para brillo alto.</p>
+            </ion-col>
+          </ion-row>
+          <ion-row class="calc-row">
+            <ion-col size="12">
+              <h3>Autonomía Batería</h3>
+              <p class="body-text">T(h)≈(Capacidad_mAh×0.8)/I_prom_mA. Ej 2×2200mAh|| → ~3.9h a 0.9A.</p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </ion-accordion>
+
+  </ion-accordion-group>
+
+
 </ion-content>

@@ -1,15 +1,44 @@
 <ion-app>
-  <ion-menu contentId="main-content">
+  <ion-menu contentId="main-content" type="overlay" class="menu-tren-root">
     <ion-header>
       <ion-toolbar>
-        <ion-title>
-          <ion-img src="assets/icon/TrenMenu.svg" style="height: 50px; width: auto;"></ion-img>
+        <ion-title class="menu-title">
+          <ion-img src="assets/icon/TrenMenu.svg" alt="TREN Logo"></ion-img>
         </ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content class="ion-padding">
-      <ion-button expand="block" routerLink="/home"><h5>Inicio</h5></ion-button>
-      <ion-button expand="block" routerLink="/circuito"><h5>Circuito</h5></ion-button>
+
+    <ion-content>
+      <ion-list lines="none" class="menu-list">
+        <!-- Inicio -->
+        <ion-menu-toggle auto-hide="true">
+          <ion-item button routerLink="/home" routerDirection="root" routerLinkActive="selected">
+            <ion-icon slot="start" name="home-outline" color="tren"></ion-icon>
+            <ion-label><h5>Inicio</h5></ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <!-- Circuito -->
+        <ion-menu-toggle auto-hide="true">
+          <ion-item button routerLink="/circuito" routerDirection="root" routerLinkActive="selected">
+            <ion-icon slot="start" name="construct-outline" color="tren"></ion-icon>
+            <ion-label><h5>Circuito</h5></ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <!-- Proyecto -->
+        <ion-menu-toggle auto-hide="true">
+          <ion-item button routerLink="/proyecto" routerDirection="root" routerLinkActive="selected">
+            <ion-icon slot="start" name="document-text-outline" color="tren"></ion-icon>
+            <ion-label><h5>Proyecto</h5></ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+
+      <!-- Footer opcional: versión / créditos -->
+      <div class="menu-footer">
+        <p class="menu-version small-text">T.R.E.N. v1.0</p>
+      </div>
     </ion-content>
   </ion-menu>
 

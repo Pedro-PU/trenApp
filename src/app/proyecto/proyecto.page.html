@@ -1,0 +1,132 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button class="menu-tren"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      <ion-img src="assets/icon/Tren.svg" style="height:32px;width:auto;" alt="TREN Logo"></ion-img>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="proyecto-content">
+
+  <!-- Tarjeta principal -->
+  <ion-card class="proyecto-card">
+    <ion-card-header>
+      <ion-card-subtitle><h3>Proyecto Final · Electrotecnia · Computación</h3></ion-card-subtitle>
+      <ion-card-title><h1>T.R.E.N.</h1></ion-card-title>
+      <ion-text class="small-text accent-text">
+        <p>(Trayectoria Registrada Electrónicamente por Neodimios)</p>
+      </ion-text>
+    </ion-card-header>
+    <ion-card-content>
+      <p class="body-text">
+        El sistema integra <strong>sensores Hall</strong>, un <strong>ESP32 FireBeetle</strong>, un 
+        <strong>driver DRV8833</strong> para el motor y un <strong>Step‑Up MT3608</strong> que regula la energía 
+        de baterías Li‑ion. Los eventos magnéticos se procesan y se envían en tiempo real a Firebase.
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Objetivos -->
+  <ion-card class="proyecto-card">
+    <ion-card-header>
+      <ion-card-title class="accent-text"><h2>Objetivos Alcanzados</h2></ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list lines="none" class="bullet-list">
+        <ion-item>
+          <ion-icon slot="start" name="checkmark-circle-outline" color="tren"></ion-icon>
+          <ion-label><h3>Conteo automático de vueltas con sensores Hall bipolares.</h3></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon slot="start" name="checkmark-circle-outline" color="tren"></ion-icon>
+          <ion-label><h3>Integración ESP32 + motor DC + pantalla + Firebase.</h3></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon slot="start" name="checkmark-circle-outline" color="tren"></ion-icon>
+          <ion-label><h3>Algoritmo secuencial anti-rebote (A → B → C).</h3></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon slot="start" name="checkmark-circle-outline" color="tren"></ion-icon>
+          <ion-label><h3>Maqueta física educativa con sensores ocultos.</h3></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon slot="start" name="checkmark-circle-outline" color="tren"></ion-icon>
+          <ion-label><h3>Análisis energético (autonomía ~3.8 h; motor &gt;30% consumo).</h3></ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Componentes -->
+  <ion-card class="proyecto-card">
+    <ion-card-header>
+      <ion-card-title class="accent-text"><h2>Componentes Clave</h2></ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6">
+            <h3 class="comp-title accent-text">Sensores Hall</h3>
+            <p class="body-text">Unipolar (presencia), Lineal (velocidad), Bipolar (conteo/dirección).</p>
+          </ion-col>
+          <ion-col size="6">
+            <h3 class="comp-title accent-text">Control &amp; Potencia</h3>
+            <p class="body-text">ESP32, DRV8833, MT3608 Step‑Up.</p>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <h3 class="comp-title accent-text">Software &amp; Datos</h3>
+            <p class="body-text">Arduino IDE, Firebase Realtime DB, Ionic + Angular.</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Resultados -->
+  <ion-card class="proyecto-card">
+    <ion-card-header>
+      <ion-card-title class="accent-text"><h2>Resultados Destacados</h2></ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list lines="none" class="bullet-list">
+        <ion-item>
+          <ion-icon slot="start" name="speedometer-outline" color="tren"></ion-icon>
+          <ion-label><h3>Conteo confiable de vueltas en tiempo real.</h3></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon slot="start" name="pulse-outline" color="tren"></ion-icon>
+          <ion-label><h3>Datos sincronizados en la nube y visibles en la app.</h3></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon slot="start" name="battery-charging-outline" color="tren"></ion-icon>
+          <ion-label><h3>Autonomía estimada &gt;3 h con baterías Li‑ion.</h3></ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Conclusión -->
+  <ion-card class="proyecto-card">
+    <ion-card-header>
+      <ion-card-title class="accent-text"><h2>Conclusión Breve</h2></ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p class="body-text">
+        El prototipo T.R.E.N. demuestra cómo sensores magnéticos, electrónica embebida e IoT convierten una maqueta educativa en un sistema de monitoreo en tiempo real. Escalable a laboratorios, ferias tecnológicas y enseñanza de IoT aplicada.
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Descarga -->
+  <div class="descarga-wrapper">
+    <ion-button expand="block" class="descargar-btn" href="assets/docs/TREN_InformeCompleto.pdf" download="TREN_InformeCompleto.pdf">
+      <h3>Descargar Informe Completo (PDF)</h3>
+    </ion-button>
+  </div>
+
+</ion-content>

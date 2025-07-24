@@ -1,2 +1,16 @@
-// For information on how to create your own theme, please see:
-// http://ionicframework.com/docs/theming/
+:root {
+  --ion-color-tren: rgb(251, 191, 71);
+  --ion-color-tren-rgb: 251,191,71;
+  --ion-color-tren-contrast: #000000;
+  --ion-color-tren-contrast-rgb: 0,0,0;
+  --ion-color-tren-shade: #e2a53f;
+  --ion-color-tren-tint: #fccc70;
+}
+.ion-color-tren {
+  --ion-color-base: var(--ion-color-tren);
+  --ion-color-base-rgb: var(--ion-color-tren-rgb);
+  --ion-color-contrast: var(--ion-color-tren-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-tren-contrast-rgb);
+  --ion-color-shade: var(--ion-color-tren-shade);
+  --ion-color-tint: var(--ion-color-tren-tint);
+}

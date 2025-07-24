@@ -1,0 +1,37 @@
+.proyecto-content {
+  --background: var(--color-fondo);
+  color: var(--color-principal);
+  padding: 16px;
+}
+
+.proyecto-card {
+  margin: 16px 0;
+}
+
+.bullet-list ion-item {
+  --background: transparent;
+  --color: var(--color-principal);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+}
+.bullet-list ion-icon {
+  color: var(--color-accent);
+}
+
+.comp-title {
+  margin: 0 0 4px 0;
+  font-size: var(--fs-h3);
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+
+.descarga-wrapper {
+  margin: 32px 16px;
+}
+.descargar-btn {
+  --background: var(--color-accent);
+  --background-activated: rgba(251,191,71,0.85);
+  --color: #000;
+  font-weight: bold;
+  border-radius: 10px;
+}
