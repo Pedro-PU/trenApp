@@ -22,7 +22,7 @@ export class HomePage implements OnInit {
   private lastDireccion = 'Desconocida';
 
   /* Gauge config */
-  readonly maxVelocidad = 200;
+  readonly maxVelocidad = 10;
   readonly startAngle = -90;
   readonly endAngle = 90;
 
